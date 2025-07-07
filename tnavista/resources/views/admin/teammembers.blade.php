@@ -33,6 +33,36 @@
                                 <span class="skill-tag">{{ $skill }}</span>
                             @endforeach
                         </div>
+                        <div class="member-social">
+                            @if($member->github)
+                                <a href="{{ $member->github }}" target="_blank" class="social-link">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                            @endif
+                            @if($member->linkedin)
+                                <a href="{{ $member->linkedin }}" target="_blank" class="social-link">
+                                    <i class="fab fa-linkedin"></i>
+                                </a>
+                            @endif
+                            @if($member->instagram)
+                                <a href="{{ $member->instagram }}" target="_blank" class="social-link">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                            @endif
+                            @if($member->portfolio)
+                                <a href="{{ $member->portfolio }}" target="_blank" class="social-link">
+                                    <i class="fas fa-briefcase"></i>
+                                </a>
+                            @endif
+                        </div>
+                        <div class="member-extra">
+                            @if($member->security_level)
+                                <span class="security-level">{{ $member->security_level }}</span>
+                            @endif
+                            @if($member->specialty)
+                                <span class="specialty">{{ $member->specialty }}</span>
+                            @endif
+                        </div>
                     </div>
                     <div class="member-actions">
                         <button class="btn btn-edit" onclick="editMember({{ $member->id }})">
@@ -53,14 +83,14 @@
         </div>
     </div>
 </main>
-</div>
 
 <!-- Modal افزودن/ویرایش عضو -->
 <div id="memberModal" class="modal">
 <div class="modal-content">
     <div class="modal-header">
         <h2>افزودن عضو جدید</h2>
-        <button class="btn btn-primary" onclick="openNewMemberModal()">    </div>
+            <button class="btn btn-primary" onclick="openNewMemberModal()"></button>
+        </div>
 
     <form id="memberForm" action="{{ route('admin.team-members.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
@@ -93,6 +123,34 @@
             </div>
         </div>
 
+            <div class="form-group">
+                <label for="github">نام کاربری گیت‌هاب</label>
+                <div class="social-input">
+                    <span class="social-prefix">github.com/</span>
+                    <input type="text" id="github" name="github" placeholder="نام کاربری">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="linkedin">نام کاربری لینکدین</label>
+                <div class="social-input">
+                    <span class="social-prefix">linkedin.com/in/</span>
+                    <input type="text" id="linkedin" name="linkedin" placeholder="نام کاربری">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="instagram">نام کاربری اینستاگرام</label>
+                <div class="social-input">
+                    <span class="social-prefix">instagram.com/</span>
+                    <input type="text" id="instagram" name="instagram" placeholder="نام کاربری">
+                </div>
+            </div>
+
+        <div class="form-group">
+            <label for="portfolio">لینک پورتفولیو</label>
+            <input type="text" id="portfolio" name="portfolio" placeholder="آدرس کامل یا نام کاربری">
+        </div>
         <div class="form-actions">
             <button type="submit" class="btn btn-primary">ذخیره</button>
             <button type="button" class="btn btn-secondary" onclick="closeNewModal()">انصراف</button>
@@ -100,5 +158,6 @@
     </form>
 </div>
 </div>
+
 <script src="{{ asset('admin/js/team-members.js') }}"></script>
 @endsection

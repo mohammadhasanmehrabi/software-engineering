@@ -35,7 +35,13 @@ class TeamMemberController extends Controller
                 'role' => 'required|string|max:100',
                 'bio' => 'required|string',
                 'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-                'skills' => 'required'
+                'skills' => 'required',
+                'github' => 'nullable|string|max:255',
+                'linkedin' => 'nullable|string|max:255',
+                'instagram' => 'nullable|string|max:255',
+                'portfolio' => 'nullable|string|max:255',
+                'security_level' => 'nullable|string|max:32',
+                'specialty' => 'nullable|string|max:32',
             ]);
 
             $data = $request->all();
@@ -85,13 +91,19 @@ class TeamMemberController extends Controller
      */
     public function update(Request $request, string $id)
     {
-                try {
+        try {
             $request->validate([
                 'full_name' => 'required|string|max:100',
                 'role' => 'required|string|max:100',
                 'bio' => 'required|string',
                 'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-                'skills' => 'required'
+                'skills' => 'required',
+                'github' => 'nullable|string|max:255',
+                'linkedin' => 'nullable|string|max:255',
+                'instagram' => 'nullable|string|max:255',
+                'portfolio' => 'nullable|string|max:255',
+                'security_level' => 'nullable|string|max:32',
+                'specialty' => 'nullable|string|max:32',
             ]);
 
             $data = $request->all();
@@ -108,11 +120,12 @@ class TeamMemberController extends Controller
             if (is_string($data['skills'])) {
                 $data['skills'] = json_decode($data['skills'], true);
             }
-            
-            TeamMembers::create($data);
+
+            $member = TeamMembers::findOrFail($id);
+            $member->update($data);
 
             return redirect()->route('admin.team-members')
-                ->with('success', 'عضو جدید با موفقیت اضافه شد.');
+                ->with('success', 'عضو با موفقیت ویرایش شد.');
         } catch (\Exception $e) {
             return redirect()->back()
                 ->with('error', 'خطا در ذخیره اطلاعات: ' . $e->getMessage())

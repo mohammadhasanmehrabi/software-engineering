@@ -42,7 +42,7 @@ function removeSkill(index) {
 
 function editMember(id) {
     const modal = document.getElementById('memberModal');
-    modal.style.display = 'block'; // نمایش مودال
+    modal.style.display = 'block';
 
     fetch(`/dashboard/team-members/${id}/edit`)
         .then(response => response.json())
@@ -50,11 +50,34 @@ function editMember(id) {
             document.getElementById('full_name').value = member.full_name;
             document.getElementById('role').value = member.role;
             document.getElementById('bio').value = member.bio;
+            
+            // تنظیم مقادیر شبکه‌های اجتماعی
+            if (member.github) {
+                document.getElementById('github').value = member.github.split('/').pop();
+            }
+            if (member.linkedin) {
+                document.getElementById('linkedin').value = member.linkedin.split('/').pop();
+            }
+            if (member.instagram) {
+                document.getElementById('instagram').value = member.instagram.split('/').pop();
+            }
+
+            // تنظیم مهارت‌ها
+            if (member.skills) {
+                skills = member.skills;
+                updateSkillsList();
+            }
+
+            // مقداردهی security_level و specialty
+            if (member.security_level) {
+                document.getElementById('security_level').value = member.security_level;
+            }
+            if (member.specialty) {
+                document.getElementById('specialty').value = member.specialty;
+            }
         })
         .catch(error => console.error("خطا در دریافت اطلاعات عضو:", error));
 }
-
-
 
 function updateSkillsList() {
     const skillsList = document.getElementById('skillsList');

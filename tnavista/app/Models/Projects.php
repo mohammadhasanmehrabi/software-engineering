@@ -18,7 +18,8 @@ class Projects extends Model
         'progress',
         'image',
         'site_url',
-        'tags'
+        'tags',
+        'model'
     ];
 
     protected $casts = [

@@ -55,7 +55,7 @@
                         </div>
                         <div class="meta-item">
                             <i class="fas fa-clock"></i>
-                            <span>{{ $message->sent_at->diffForHumans() }}</span>
+                            <span>{{ $message->created_at->diffForHumans() }}</span>
                         </div>
                     </div>
                 </div>

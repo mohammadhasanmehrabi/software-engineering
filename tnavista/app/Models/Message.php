@@ -14,12 +14,10 @@ class Message extends Model
         'subject',
         'message',
         'user_id',
-        'sent_at',
         'is_read'
     ];
 
     protected $casts = [
-        'sent_at' => 'datetime',
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
         'is_read' => 'boolean'

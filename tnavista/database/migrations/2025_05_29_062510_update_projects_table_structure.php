@@ -11,7 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        //
+        Schema::table('projects', function (Blueprint $table) {
+            $table->string('model')->nullable()->after('status');
+        });
     }
 
     /**
@@ -19,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::table('projects', function (Blueprint $table) {
+            $table->dropColumn('model');
+        });
     }
 };

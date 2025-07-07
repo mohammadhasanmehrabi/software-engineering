@@ -15,6 +15,12 @@ return new class extends Migration
             $table->text('bio')->nullable();
             $table->string('photo_url', 255)->nullable();
             $table->json('skills')->nullable();
+            $table->string('github', 255)->nullable();
+            $table->string('linkedin', 255)->nullable();
+            $table->string('instagram', 255)->nullable();
+            $table->string('portfolio', 255)->nullable();
+            $table->string('security_level', 32)->nullable();
+            $table->string('specialty', 32)->nullable();
             $table->timestamps();
         });
     }

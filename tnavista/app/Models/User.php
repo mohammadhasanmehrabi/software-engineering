@@ -33,4 +33,14 @@ class User extends Authenticatable
     {
         return $this->hasMany(ContactMessage::class, 'user_id');
     }
+
+    public function adminContactMessages()
+    {
+        return $this->hasMany(ContactMessage::class, 'admin_id');
+    }
+
+    public function chatMessages()
+    {
+        return $this->hasMany(ChatMessage::class, 'sender_id');
+    }
 }

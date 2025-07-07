@@ -5,6 +5,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Projects;
 use App\Models\Article;
+use App\Models\Message;
+use App\Models\TeamMembers;
 
 class AdminController extends Controller
 {
@@ -13,22 +15,22 @@ class AdminController extends Controller
      */
     public function index()
     {
-        $articlesCount = \App\Models\Articles::count();
-        $commentsCount = \App\Models\ContactMessages::count();
-        $newArticlesCount = \App\Models\Articles::whereDate('created_at', '>=', now()->subWeek())->count();
-        $newCommentsCount = \App\Models\ContactMessages::whereDate('created_at', '>=', now()->subWeek())->count();
+        $articlesCount = \App\Models\Article::count();
+        $commentsCount = \App\Models\Message::count();
+        $newArticlesCount = \App\Models\Article::whereDate('created_at', '>=', now()->subWeek())->count();
+        $newCommentsCount = \App\Models\Message::whereDate('created_at', '>=', now()->subWeek())->count();
         $projectsCount = Projects::count();
         $teamCount = \App\Models\TeamMembers::count();
         $newTeamCount = \App\Models\TeamMembers::whereDate('created_at', '>=', now()->subWeek())->count();
         return view('admin.dashboard', compact(
-    'teamCount',
-    'newTeamCount',
-    'projectsCount',
-    'newCommentsCount',
-    'commentsCount',
-    'newArticlesCount',
-    'articlesCount'
-));
+            'teamCount',
+            'newTeamCount',
+            'projectsCount',
+            'newCommentsCount',
+            'commentsCount',
+            'newArticlesCount',
+            'articlesCount'
+        ));
     }
 
     /**

@@ -27,7 +27,7 @@ async function viewMessage(id) {
             document.getElementById('modal-sender-name').textContent = message.sender_name;
             document.getElementById('modal-sender-contact').textContent = message.sender_contact;
             document.getElementById('modal-subject').textContent = message.subject || 'بدون موضوع';
-            document.getElementById('modal-date').textContent = new Date(message.sent_at).toLocaleString('fa-IR');
+            document.getElementById('modal-date').textContent = new Date(message.created_at).toLocaleString('fa-IR');
             document.getElementById('modal-message').textContent = message.message;
             
             // Show Modal

@@ -157,6 +157,16 @@
                 </div>
 
                 <div class="form-group">
+                    <label for="model">مدل پروژه</label>
+                    <select id="model" name="model" required>
+                        <option value="web">web</option>
+                        <option value="mobile">mobile</option>
+                        <option value="uiux"> telegram</option>
+                        <option value="cloud"> windows</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
                     <label for="progress">درصد پیشرفت</label>
                     <input type="range" id="progress" name="progress" min="0" max="100" value="0">
                     <span class="progress-value">0%</span>
