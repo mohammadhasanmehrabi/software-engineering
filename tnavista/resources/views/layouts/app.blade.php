@@ -36,7 +36,7 @@
                     <li class="nav-item"><a class="nav-link" href="{{ url('/team') }}">اعضای تیم</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ url('/projects') }}">پروژه‌ها</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ url('/articles') }}">مقالات</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ url('/contact') }}">تماس با ما</a></li>
+                    <li class="nav-item"><a class="nav-link" href="welcome.blade.php">تماس با ما</a></li>
                     @auth
                         <li class="nav-item">
                             <a class="nav-link panel-icon" href="{{ url('/user/dashboard') }}" title="پنل کاربر">
